@@ -1,39 +1,42 @@
-import React, { useEffect, useRef } from 'react';
-import { shaderMaterial, useGLTF, useTexture } from '@react-three/drei';
-import * as THREE from 'three';
-import gsap from 'gsap';
-import animations from './config/animation';
-import vertexShader from './shaders/shadow_catcher/vertex.glsl';
-import fragmentShader from './shaders/shadow_catcher/fragment.glsl';
-import { extend } from '@react-three/fiber';
-import { useControls } from 'leva';
+import React, { useEffect, useRef } from 'react'
+
+import gsap from 'gsap'
+import * as THREE from 'three'
+import { useControls } from 'leva'
+
+import { extend } from '@react-three/fiber'
+import { shaderMaterial, useGLTF, useTexture } from '@react-three/drei'
+
+import animations from '../config/animations'
+import vertexShader from '../shaders/shadow_catcher/vertex.glsl'
+import fragmentShader from '../shaders/shadow_catcher/fragment.glsl'
 
 export default function Desk(props) {
   // Models
-  const { nodes: roomNodes } = useGLTF('./models/desk/room.glb');
-  const { nodes: shadowCatcherNodes } = useGLTF('./models/desk/shadows/shadow_stage.glb');
+  const { nodes: roomNodes } = useGLTF('./models/desk/room.glb')
+  const { nodes: shadowCatcherNodes } = useGLTF('./models/desk/shadows/shadow_stage.glb')
 
   // Textures
-  const bakedTexture = useTexture('./models/desk/room.jpg');
-  const shadowTexture = useTexture('./models/desk/shadows/baked_v4.jpg');
-  shadowTexture.flipY = false;
-  bakedTexture.flipY = false;
+  const bakedTexture = useTexture('./models/desk/room.jpg')
+  const shadowTexture = useTexture('./models/desk/shadows/baked_v4.jpg')
+  shadowTexture.flipY = false
+  bakedTexture.flipY = false
 
   // Refs
-  const model = useRef();
-  const chair = useRef();
-  const shadowCatcher = useRef();
-  const wallStuff = useRef();
+  const model = useRef()
+  const chair = useRef()
+  const shadowCatcher = useRef()
+  const wallStuff = useRef()
 
   // Controls
   var { color, opacity } = useControls('shadow', {
     color: '#e6cea8',
     opacity: { value: 0, min: 0, max: 1, step: 0.01 }
-  });
+  })
 
   // useEffects
   useEffect(() => {
-    console.log('start');
+    console.log('start')
     // Desk
     gsap.to(model.current.scale, {
       x: 1,
@@ -42,7 +45,7 @@ export default function Desk(props) {
       delay: animations.delays.room.desk,
       duration: animations.durations.room.desk,
       ease: animations.ease.elasticOut
-    });
+    })
 
     // Wall stuff
     gsap.to(wallStuff.current.scale, {
@@ -52,7 +55,7 @@ export default function Desk(props) {
       delay: animations.delays.room.wallStuff,
       duration: animations.durations.room.wallStuff,
       ease: animations.ease.elasticOut
-    });
+    })
 
     // Shadow
     gsap.to(shadowCatcher.current.material.uniforms.uOpacity, {
@@ -60,10 +63,10 @@ export default function Desk(props) {
       duration: animations.durations.room.shadow,
       delay: animations.delays.room.shadow,
       ease: animations.ease.power1Out
-    });
+    })
 
-    opacity = 1;
-  }, []);
+    opacity = 1
+  }, [])
 
   return (
     <group {...props} dispose={null}>
@@ -96,11 +99,11 @@ export default function Desk(props) {
         <stageMaterial uColor={color} uOpacity={opacity} alphaMask={shadowTexture} transparent />
       </mesh>
     </group>
-  );
+  )
 }
 
-useGLTF.preload('./models/desk/room.glb');
-useGLTF.preload('./models/desk/shadows/shadow_stage.glb');
+useGLTF.preload('./models/desk/room.glb')
+useGLTF.preload('./models/desk/shadows/shadow_stage.glb')
 
 const StageMaterial = shaderMaterial(
   {
@@ -110,6 +113,6 @@ const StageMaterial = shaderMaterial(
   },
   vertexShader,
   fragmentShader
-);
+)
 
-extend({ StageMaterial });
+extend({ StageMaterial })

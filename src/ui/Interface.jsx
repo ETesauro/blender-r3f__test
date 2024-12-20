@@ -1,7 +1,7 @@
-import About from './About'
-import Projects from './Projects'
-import Skills from './Skills'
-import Contact from './Contact'
+import About from './components/home/About'
+import Projects from './components/home/Projects'
+import Skills from './components/home/Skills'
+import Contact from './components/home/Contact'
 
 export default function Interface() {
   return (

@@ -3,8 +3,7 @@ uniform sampler2D uPerlinTexture;
 
 varying vec2 vUv;
 
-void main()
-{
+void main() {
     // Scale and animate
     vec2 smokeUv = vUv;
     smokeUv.x *= 0.5;

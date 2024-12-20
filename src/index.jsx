@@ -1,40 +1,56 @@
-import './style.css';
-import ReactDOM from 'react-dom/client';
-import { Canvas } from '@react-three/fiber';
-import { Preload, Scroll, ScrollControls } from '@react-three/drei';
-import Interface from './components/Interface';
-import Experience from './experience/Experience';
-import { Suspense } from 'react';
-import Loading from './components/loading/Loading';
+import { Suspense } from 'react'
 
-const root = ReactDOM.createRoot(document.querySelector('#root'));
+import { Leva } from 'leva'
 
-root.render(
-  <>
-    <Suspense fallback={null}>
-      <Canvas
-        flat
-        camera={{
-          fov: 45,
-          near: 0.1,
-          far: 50,
-          position: [5.5, 2, 7]
-        }}
-      >
-        <Preload all />
-        <color args={['#F5EFE6']} attach='background' />
+import ReactDOM from 'react-dom/client'
+import { Canvas } from '@react-three/fiber'
+import { Preload, Scroll, ScrollControls } from '@react-three/drei'
 
-        <ScrollControls pages={4} damping={0.1}>
-          {/* Experience */}
-          <Experience />
+import Interface from './ui/Interface'
+import useDebugMode from './ui/hooks/useDebugMode'
+import Loading from './ui/components/loading/Loading'
 
-          {/* Interface */}
-          <Scroll html>
-            <Interface />
-          </Scroll>
-        </ScrollControls>
-      </Canvas>
-    </Suspense>
-    <Loading />
-  </>
-);
+import Experience from './experience/Experience'
+
+import './style.css'
+
+const root = ReactDOM.createRoot(document.querySelector('#root'))
+
+const cameraConfig = {
+  fov: 45,
+  near: 0.1,
+  far: 50,
+  position: [5.5, 2, 7]
+}
+
+const App = () => {
+  const isDebugMode = useDebugMode()
+
+  return (
+    <>
+      <Suspense fallback={null}>
+        {/* Leva for debugging */}
+        <Leva hidden={!isDebugMode} />
+
+        <Canvas flat camera={cameraConfig}>
+          <Preload all />
+          <color args={['#F5EFE6']} attach='background' />
+
+          <ScrollControls pages={4} damping={0.1}>
+            {/* Experience */}
+            <Experience />
+
+            {/* Interface */}
+            <Scroll html>
+              <Interface />
+            </Scroll>
+          </ScrollControls>
+        </Canvas>
+      </Suspense>
+
+      <Loading />
+    </>
+  )
+}
+
+root.render(<App />)

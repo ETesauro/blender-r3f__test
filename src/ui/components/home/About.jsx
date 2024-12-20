@@ -1,5 +1,5 @@
 import Section from './Section'
-import Magnetic from './common/Magnetic/Magnetic'
+import Magnetic from '../../common/Magnetic'
 
 export default function About() {
   return (

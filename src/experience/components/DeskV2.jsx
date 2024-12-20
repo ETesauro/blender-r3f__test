@@ -1,13 +1,16 @@
 import React, { useEffect, useRef } from 'react'
-import { shaderMaterial, useGLTF, useTexture } from '@react-three/drei'
-import * as THREE from 'three'
+
 import gsap from 'gsap'
-import animations from './config/animation'
-import vertexShader from './shaders/shadow_catcher/vertex.glsl'
-import fragmentShader from './shaders/shadow_catcher/fragment.glsl'
-import { extend } from '@react-three/fiber'
+import * as THREE from 'three'
 import { useControls } from 'leva'
+
 import { CustomEase } from 'gsap/all'
+import { extend } from '@react-three/fiber'
+import { shaderMaterial, useGLTF, useTexture } from '@react-three/drei'
+
+import animations from '../config/animations'
+import vertexShader from '../shaders/shadow_catcher/vertex.glsl'
+import fragmentShader from '../shaders/shadow_catcher/fragment.glsl'
 
 export default function DeskV2(props) {
   // Models
@@ -29,7 +32,7 @@ export default function DeskV2(props) {
   // Controls
   var { color, opacity } = useControls('shadow', {
     color: '#e6cea8',
-    opacity: { value: 0, min: 0, max: 1, step: 0.01 },
+    opacity: { value: 0, min: 0, max: 1, step: 0.01 }
   })
 
   // useEffects
@@ -42,7 +45,7 @@ export default function DeskV2(props) {
       z: 1,
       delay: animations.delays.room.desk,
       duration: animations.durations.room.desk,
-      ease: animations.ease.elasticOut,
+      ease: animations.ease.elasticOut
     })
 
     // Wall stuff
@@ -52,7 +55,7 @@ export default function DeskV2(props) {
       z: 1,
       delay: animations.delays.room.wallStuff,
       duration: animations.durations.room.wallStuff,
-      ease: animations.ease.elasticOut,
+      ease: animations.ease.elasticOut
     })
 
     // Shadow
@@ -60,13 +63,13 @@ export default function DeskV2(props) {
       value: 1,
       duration: animations.durations.room.shadow,
       delay: animations.delays.room.shadow,
-      ease: animations.ease.power1Out,
+      ease: animations.ease.power1Out
     })
 
     gsap.to(chair.current.rotation, {
       y: Math.PI * 10,
       duration: 1.6,
-      ease: CustomEase.create('custom', 'M0,0 C0.11,0.494 0.097,0.482 0.175,0.601 0.302,0.797 0.504,1 1,1 '),
+      ease: CustomEase.create('custom', 'M0,0 C0.11,0.494 0.097,0.482 0.175,0.601 0.302,0.797 0.504,1 1,1 ')
     })
 
     opacity = 1
@@ -120,7 +123,7 @@ const StageMaterial = shaderMaterial(
   {
     alphaMask: new THREE.Texture(),
     uColor: new THREE.Color('#e6cea8'),
-    uOpacity: 1.0,
+    uOpacity: 1.0
   },
   vertexShader,
   fragmentShader

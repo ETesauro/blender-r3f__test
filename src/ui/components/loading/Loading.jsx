@@ -9,6 +9,7 @@ export default function Loading() {
         <div className='font-bold text-6xl'>{progress.toFixed(2)}</div>
         <div className='font-light text-lg'>loaded</div>
       </div>
+
       {/* <div className='loading__container'>
         <div className='loading__progress'>{progress.toFixed(2)}</div>
         <div className='loading__subtitle'>loaded</div>
