@@ -31,9 +31,8 @@ const App = () => {
       {/* Leva for debugging */}
       <Leva hidden={!isDebugMode} />
 
-      <Canvas flat camera={cameraConfig}>
-        <Suspense fallback={null}>
-          <Preload all />
+      <Suspense fallback={<Loading />}>
+        <Canvas flat camera={cameraConfig}>
           <color args={['#F5EFE6']} attach='background' />
 
           <ScrollControls pages={4} damping={0.1}>
@@ -45,10 +44,12 @@ const App = () => {
               <Interface />
             </Scroll>
           </ScrollControls>
-        </Suspense>
-      </Canvas>
 
-      <Loading />
+          <Preload all />
+        </Canvas>
+      </Suspense>
+
+      {/* <Loading /> */}
     </>
   )
 }

@@ -1,8 +1,7 @@
 import { useProgress } from '@react-three/drei'
-import { useEffect } from 'react'
 
 export default function Loading() {
-  const { progress, item } = useProgress()
+  const { progress } = useProgress()
 
   return (
     <>
