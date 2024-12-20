@@ -107,6 +107,11 @@ export function DeskV5(props) {
       <group ref={model} scale={[0, 0, 0]}>
         <Desk roomNodes={roomNodes} bakedTexture={bakedTexture} />
         <Chair roomNodes={roomNodes} bakedTexture={bakedTexture} />
+        {/* Smoke */}
+        <mesh scale={[0.15, 0.6, 0.5]} position={[-0.81, 2.0, -0.13]}>
+          <planeGeometry args={[1, 1, 16, 64]} />
+          <smokeMaterial uPerlinTexture={perlinTexture} transparent={true} side={THREE.DoubleSide} ref={smokeMaterial} depthWrite={false} />
+        </mesh>
 
         <RightMonitor roomNodes={roomNodes} portalMaterialRight={portalMaterialRight} />
         <LeftMonitor roomNodes={roomNodes} portalMaterialLeft={portalMaterialLeft} />
@@ -120,19 +125,15 @@ export function DeskV5(props) {
       <mesh ref={shadowCatcher} geometry={shadowCatcherNodes.shadow_catcher.geometry} position={[0, 0, 1.981]}>
         <stageMaterial uColor={color} uOpacity={opacity} alphaMask={shadowTexture} transparent />
       </mesh>
-
-      {/* Smoke */}
-      <mesh scale={[0.15, 0.6, 0.5]} position={[-0.81, 2.0, -0.13]}>
-        <planeGeometry args={[1, 1, 16, 64]} />
-        <smokeMaterial uPerlinTexture={perlinTexture} transparent={true} side={THREE.DoubleSide} ref={smokeMaterial} depthWrite={false} />
-      </mesh>
     </group>
   )
 }
 
 useGLTF.preload('./models/desk_v5/desk_3.glb')
 useGLTF.preload('./models/desk_v5/shadow_catcher.glb')
-useGLTF.preload('./models/desk_v5/perlin.png')
+useTexture.preload('./models/desk_v5/baked_3.jpg')
+useTexture.preload('./models/desk_v5/shadow_3.1_final.jpg')
+useTexture.preload('./models/desk_v5/perlin.png')
 
 // ------- OBJECTS -------
 

@@ -4,9 +4,6 @@ function useDebugMode(hashKey = '#debug') {
   const [isDebugMode, setIsDebugMode] = useState(false)
 
   useEffect(() => {
-    console.log(window.location.hash)
-    console.log(window.location.hash === hashKey)
-
     const checkDebugMode = () => {
       setIsDebugMode(window.location.hash === hashKey)
     }
