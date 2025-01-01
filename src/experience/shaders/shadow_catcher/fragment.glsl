@@ -9,4 +9,6 @@ void main() {
     alpha = (1.0 - alpha) * uOpacity;
 
     gl_FragColor = vec4(uColor, alpha);
+
+    #include <colorspace_fragment>
 }

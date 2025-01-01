@@ -12,10 +12,10 @@ import { extend, useFrame } from '@react-three/fiber'
 import { shaderMaterial, useGLTF, useTexture } from '@react-three/drei'
 
 import animations from '../config/animations'
-import portalVertexShader from '../shaders/portal/vertex.glsl'
 import vertexShader from '../shaders/shadow_catcher/vertex.glsl'
-import portalFragmentShader from '../shaders/portal/fragment.glsl'
 import fragmentShader from '../shaders/shadow_catcher/fragment.glsl'
+import portalVertexShader from '../shaders/portal/vertex.glsl'
+import portalFragmentShader from '../shaders/portal/fragment.glsl'
 import coffeeSmokeVertexShader from '../shaders/coffeeSmoke/vertex.glsl'
 import coffeeSmokeFragmentShader from '../shaders/coffeeSmoke/fragment.glsl'
 
@@ -46,13 +46,19 @@ export function DeskV5(props) {
 
   // Controls
   var { color, opacity, position, leftMonitorStart, leftMonitorEnd, rightMonitorStart, rightMonitorEnd } = useControls('Desk V5', {
-    model: folder({
-      position: { value: [1.29, 0, -0.62], max: 10, step: 0.01 }
-    }),
-    shadow: folder({
-      color: { value: '#e6cea8' },
-      opacity: { value: 0, min: 0, max: 1, step: 0.01 }
-    })
+    model: folder(
+      {
+        position: { value: [1.29, 0, -0.62], max: 10, step: 0.01 }
+      },
+      { collapsed: true }
+    ),
+    shadow: folder(
+      {
+        color: { value: '#e6cea8' },
+        opacity: { value: 0, min: 0, max: 1, step: 0.01 }
+      },
+      { collapsed: true }
+    )
   })
 
   useEffect(() => {
@@ -155,10 +161,13 @@ const Chair = ({ roomNodes, bakedTexture }) => {
 
 const RightMonitor = ({ roomNodes, portalMaterialRight }) => {
   var { rightMonitorStart, rightMonitorEnd } = useControls('Desk V5', {
-    monitors: folder({
-      rightMonitorStart: { value: '#6bbcff' },
-      rightMonitorEnd: { value: '#000000' }
-    })
+    rightMonitor: folder(
+      {
+        rightMonitorStart: { value: '#209bff' },
+        rightMonitorEnd: { value: '#000000' }
+      },
+      { collapsed: true }
+    )
   })
 
   return (
@@ -170,10 +179,13 @@ const RightMonitor = ({ roomNodes, portalMaterialRight }) => {
 
 const LeftMonitor = ({ roomNodes, portalMaterialLeft }) => {
   var { leftMonitorStart, leftMonitorEnd } = useControls('Desk V5', {
-    monitors: folder({
-      leftMonitorStart: { value: '#d8957c' },
-      leftMonitorEnd: { value: '#000000' }
-    })
+    leftMonitor: folder(
+      {
+        leftMonitorStart: { value: '#ad613c' },
+        leftMonitorEnd: { value: '#000000' }
+      },
+      { collapsed: true }
+    )
   })
 
   return (
@@ -229,6 +241,16 @@ const SmokeMaterial = shaderMaterial(
   coffeeSmokeFragmentShader
 )
 
+// const TestMaterial = shaderMaterial(
+//   {},
+//   `void main() {
+//     gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
+//   }`,
+//   `
+//   `
+// )
+
 extend({ StageMaterial })
 extend({ PortalMaterial })
 extend({ SmokeMaterial })
+// extend({ TestMaterial })
