@@ -14,13 +14,13 @@ import portalFragmentShader from '../../shaders/portal/fragment.glsl'
 import coffeeSmokeVertexShader from '../../shaders/coffeeSmoke/vertex.glsl'
 import coffeeSmokeFragmentShader from '../../shaders/coffeeSmoke/fragment.glsl'
 
-export default function DeskV6(props) {
+export default function RoomV6(props) {
   // Models
-  const { nodes: roomNodes } = useGLTF('./models/desk_v6/desk/desk.glb')
+  const { nodes: roomNodes } = useGLTF('./models/room_v6/desk/desk.glb')
 
   // Textures
-  const bakedTexture = useTexture('./models/desk_v6/desk/baked.jpg')
-  const perlinTexture = useTexture('./models/desk_v6/desk/smoke_perlin.png')
+  const bakedTexture = useTexture('./models/room_v6/desk/baked.jpg')
+  const perlinTexture = useTexture('./models/room_v6/desk/smoke_perlin.png')
   bakedTexture.flipY = false
   perlinTexture.wrapS = THREE.RepeatWrapping
   perlinTexture.wrapT = THREE.RepeatWrapping
@@ -34,10 +34,11 @@ export default function DeskV6(props) {
   const smokeMaterial = useRef()
 
   // Controls
-  var { position } = useControls('Desk V6', {
+  var { position, rotation } = useControls('Desk V6', {
     model: folder(
       {
-        position: { value: [1.29, 0, -0.62], max: 10, step: 0.01 }
+        position: { value: props.position || [0, 0, 0], max: 10, step: 0.01 },
+        rotation: { value: props.rotation || [0, 0, 0], max: 10, step: 0.01 }
       },
       { collapsed: true }
     )
@@ -62,7 +63,7 @@ export default function DeskV6(props) {
   })
 
   return (
-    <group {...props} dispose={null} position={position}>
+    <group {...props} dispose={null} position={position} rotation={rotation}>
       {/* Desk - Emissions (Monitors) */}
       <group ref={model} scale={[0, 0, 0]}>
         <Desk roomNodes={roomNodes} bakedTexture={bakedTexture} />
@@ -145,6 +146,6 @@ const SmokeMaterial = shaderMaterial(
 extend({ PortalMaterial })
 extend({ SmokeMaterial })
 
-useGLTF.preload('/models/desk_v6/desk/desk.glb')
-useTexture.preload('./models/desk_v6/desk/baked.jpg')
-useTexture.preload('./models/desk_v6/desk/smoke_perlin.png')
+useGLTF.preload('/models/room_v6/desk/desk.glb')
+useTexture.preload('./models/room_v6/desk/baked.jpg')
+useTexture.preload('./models/room_v6/desk/smoke_perlin.png')

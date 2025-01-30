@@ -13,10 +13,10 @@ import shadowCatcherFragmentShader from '../../../shaders/shadow_catcher/fragmen
 
 export default function ShadowCatcher(props) {
   // Nodes
-  const { nodes } = useGLTF('./models/desk_v6/shadowCatcher/model.glb')
+  const { nodes } = useGLTF('./models/room_v6/shadowCatcher/model.glb')
 
   // Materials
-  const shadowTexture = useTexture('./models/desk_v6/shadowCatcher/shadow_final.jpg')
+  const shadowTexture = useTexture('./models/room_v6/shadowCatcher/shadow_final.jpg')
   shadowTexture.flipY = false
 
   // Refs
@@ -62,7 +62,7 @@ const StageMaterial = shaderMaterial(
   shadowCatcherFragmentShader
 )
 
-useGLTF.preload('/models/desk_v6/shadowCatcher/model.glb')
-useTexture.preload('/models/desk_v6/shadowCatcher/shadow_final.jpg')
+useGLTF.preload('/models/room_v6/shadowCatcher/model.glb')
+useTexture.preload('/models/room_v6/shadowCatcher/shadow_final.jpg')
 
 extend({ StageMaterial })

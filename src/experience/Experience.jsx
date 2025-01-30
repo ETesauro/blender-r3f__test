@@ -3,7 +3,7 @@ import { Perf } from 'r3f-perf'
 import { OrbitControls } from '@react-three/drei'
 
 import useDebugMode from '../ui/hooks/useDebugMode.jsx'
-import DeskV6 from './components/DeskV6'
+import RoomV6 from './components/RoomV6'
 
 export default function Experience() {
   const isDebugMode = useDebugMode()
@@ -11,11 +11,11 @@ export default function Experience() {
   return (
     <>
       <OrbitControls enabled={isDebugMode} />
+      {/* <axesHelper scale={[2, 2, 2]} /> */}
       {isDebugMode && <Perf position='bottom-right' matrixUpdate />}
 
-      <group scale={[0.7, 0.7, 0.7]} position={[2, -0.7, 1]}>
-        <DeskV6 />
-      </group>
+      <RoomV6 scale={[0.7, 0.7, 0.7]} position={[2.02, -1.11, 1.07]} rotation={[0, 5.42, 0]} />
+      {/* <RoomV6 scale={[0.7, 0.7, 0.7]} position={[2.23, -1.11, 0.26]} rotation={[0, 5.57, 0]} /> */}
     </>
   )
 }

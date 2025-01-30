@@ -20,7 +20,8 @@ const cameraConfig = {
   fov: 45,
   near: 0.1,
   far: 50,
-  position: [5.5, 2, 7]
+  // position: [5.5, 2, 7]
+  position: [0, 2, 7]
 }
 
 const App = () => {
@@ -37,7 +38,9 @@ const App = () => {
 
           <ScrollControls pages={4} damping={0.1}>
             {/* Experience */}
-            <Experience />
+            <Scroll>
+              <Experience />
+            </Scroll>
 
             {/* Interface */}
             <Scroll html>

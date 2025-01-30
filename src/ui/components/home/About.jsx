@@ -3,7 +3,7 @@ import Magnetic from '../../common/Magnetic'
 
 export default function About() {
   return (
-    <Section>
+    <Section className='items-start justify-center'>
       <h1 className='text-6xl font-semibold leading-snug'>
         Hi, my
         <br />
