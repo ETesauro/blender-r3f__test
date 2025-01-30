@@ -6,7 +6,8 @@ export default {
       shadow: 1,
       wallStuff: {
         guitar: 0.8,
-        books: 0.8
+        books: 0.8,
+        quadro: 0.8
       }
     }
   },
@@ -16,7 +17,8 @@ export default {
       chair: 0.9,
       wallStuff: {
         guitar: 0.3,
-        books: 0.5
+        books: 0.5,
+        quadro: 0.6
       },
       shadow: 0.8
     }

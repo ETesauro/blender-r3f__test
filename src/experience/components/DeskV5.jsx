@@ -205,7 +205,7 @@ const Books = forwardRef(({ bakedTexture, roomNodes }, ref) => {
 
 const Guitar = forwardRef(({ bakedTexture, roomNodes }, ref) => {
   return (
-    <mesh name='guitar' ref={ref} geometry={roomNodes.guitar.geometry} material={roomNodes.guitar.material} scale={[0, 0, 0]} position={[-3.325, 2.949, -1.142]}>
+    <mesh name='guitar' ref={ref} geometry={roomNodes.guitar.geometry} material={roomNodes.guitar.material} position={[-3.325, 2.949, -1.142]}>
       <meshBasicMaterial map={bakedTexture} />
     </mesh>
   )

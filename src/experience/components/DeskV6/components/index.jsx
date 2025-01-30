@@ -1,0 +1,5 @@
+export { default as Books } from './Books'
+export { default as Desk } from './Desk'
+export { default as Guitar } from './Guitar'
+export { default as Quadro } from './Quadro'
+export { default as ShadowCatcher } from './ShadowCatcher'
