@@ -7,6 +7,7 @@ export default {
       wallStuff: {
         guitar: 0.8,
         books: 0.8,
+        lavagna: 0.8,
         quadro: 0.8
       }
     }
@@ -17,8 +18,9 @@ export default {
       chair: 0.9,
       wallStuff: {
         guitar: 0.3,
-        books: 0.5,
-        quadro: 0.6
+        books: 0.45,
+        lavagna: 0.6,
+        quadro: 0.75
       },
       shadow: 0.8
     }

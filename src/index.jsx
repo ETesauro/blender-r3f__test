@@ -17,7 +17,7 @@ import './style.css'
 const root = ReactDOM.createRoot(document.querySelector('#root'))
 
 const cameraConfig = {
-  fov: 45,
+  fov: 53,
   near: 0.1,
   far: 50,
   // position: [5.5, 2, 7]
