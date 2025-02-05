@@ -3,7 +3,6 @@ import React, { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { folder, useControls } from 'leva'
 
-import { useFrame } from '@react-three/fiber'
 import { useGLTF, useTexture } from '@react-three/drei'
 
 import animations from '../../config/animations'
@@ -13,7 +12,7 @@ import './materials'
 
 export default function RoomV7(props) {
   // Models
-  const { nodes } = useGLTF('./models/room_v7/desk/model.glb')
+  const { nodes } = useGLTF('./models/room_v7/desk/room.glb')
 
   // Textures
   const bakedTexture = useTexture('./models/room_v7/desk/baked.jpg')
@@ -21,10 +20,6 @@ export default function RoomV7(props) {
 
   // Refs
   const model = useRef()
-
-  // Materials
-  const portalMaterialLeft = useRef()
-  const portalMaterialRight = useRef()
 
   // Controls
   var { position, rotation } = useControls('Desk V7', {
@@ -57,19 +52,14 @@ export default function RoomV7(props) {
     )
   }, [])
 
-  useFrame((state, delta) => {
-    portalMaterialLeft.current.uTime += delta
-    portalMaterialRight.current.uTime += delta
-  })
-
   return (
     <group {...props} dispose={null} position={position} rotation={rotation}>
       {/* Desk - Emissions (Monitors) */}
       <group ref={model}>
         <Desk roomNodes={nodes} bakedTexture={bakedTexture} />
 
-        <LeftMonitor roomNodes={nodes} portalMaterialLeft={portalMaterialLeft} />
-        <RightMonitor roomNodes={nodes} portalMaterialRight={portalMaterialRight} />
+        <LeftMonitor roomNodes={nodes} />
+        <RightMonitor roomNodes={nodes} />
       </group>
 
       <Guitar roomNodes={nodes} bakedTexture={bakedTexture} />
@@ -82,6 +72,6 @@ export default function RoomV7(props) {
   )
 }
 
-useGLTF.preload('./models/room_v7/desk/model.glb')
+useGLTF.preload('./models/room_v7/desk/room.glb')
 useTexture.preload('./models/room_v7/desk/baked.jpg')
 useTexture.preload('./models/room_v7/desk/smoke_perlin.png')
