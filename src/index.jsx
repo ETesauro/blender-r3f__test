@@ -1,4 +1,4 @@
-import { Suspense } from 'react'
+import { StrictMode, Suspense } from 'react'
 
 import { Leva } from 'leva'
 
@@ -8,13 +8,19 @@ import { Preload, Scroll, ScrollControls } from '@react-three/drei'
 
 import Interface from './ui/Interface'
 import { useDebugMode } from './ui/hooks'
-import Loading from './ui/components/loading/Loading'
 import Experience from './experience/Experience'
-import { CustomCamera } from './experience/components'
+import Loading from './ui/components/loading/Loading'
 
 import './style.css'
 
 const root = ReactDOM.createRoot(document.querySelector('#root'))
+
+const cameraConfig = {
+  fov: 50,
+  near: 0.1,
+  far: 50,
+  position: [0, 2.1, 7]
+}
 
 const App = () => {
   const isDebugMode = useDebugMode()
@@ -25,9 +31,8 @@ const App = () => {
       <Leva hidden={!isDebugMode} />
 
       <Suspense fallback={<Loading />}>
-        <Canvas flat>
+        <Canvas flat camera={cameraConfig}>
           <color args={['#F5EFE6']} attach='background' />
-          <CustomCamera />
 
           <ScrollControls pages={4} damping={0.1}>
             {/* Experience */}
@@ -48,4 +53,8 @@ const App = () => {
   )
 }
 
-root.render(<App />)
+root.render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+)

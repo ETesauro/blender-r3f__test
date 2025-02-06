@@ -1,25 +1,20 @@
 import { useState, useEffect } from 'react'
 
-function useDebugMode(hashKey = '#debug') {
-  const [isDebugMode, setIsDebugMode] = useState(false)
+const useDebugMode = () => {
+  const [isDebug, setIsDebug] = useState(window.location.hash === '#debug')
 
   useEffect(() => {
-    const checkDebugMode = () => {
-      setIsDebugMode(window.location.hash === hashKey)
+    console.log(window.location.hash)
+
+    const checkHash = () => {
+      setIsDebug(window.location.hash === '#debug')
     }
 
-    // Controllo iniziale
-    checkDebugMode()
+    window.addEventListener('hashchange', checkHash)
+    return () => window.removeEventListener('hashchange', checkHash)
+  }, [])
 
-    // Aggiunge un listener per i cambiamenti di hash nell'URL
-    window.addEventListener('hashchange', checkDebugMode)
-
-    return () => {
-      window.removeEventListener('hashchange', checkDebugMode)
-    }
-  }, [hashKey])
-
-  return isDebugMode
+  return isDebug
 }
 
 export { useDebugMode }
