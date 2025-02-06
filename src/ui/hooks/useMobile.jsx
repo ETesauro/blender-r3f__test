@@ -1,4 +1,4 @@
-import { useCallback } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 function useMobile() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
@@ -20,4 +20,4 @@ function useMobile() {
   return isMobile
 }
 
-export default useMobile
+export { useMobile }

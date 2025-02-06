@@ -5,8 +5,6 @@ import animations from '../config/animations'
 
 const useRoomAnimations = (refs) => {
   useEffect(() => {
-    console.log(refs)
-
     if (!refs) return
 
     // Desk

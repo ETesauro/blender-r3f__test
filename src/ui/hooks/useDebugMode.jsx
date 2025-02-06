@@ -22,4 +22,4 @@ function useDebugMode(hashKey = '#debug') {
   return isDebugMode
 }
 
-export default useDebugMode
+export { useDebugMode }
