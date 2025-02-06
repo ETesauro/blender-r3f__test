@@ -10,7 +10,7 @@ export default function Experience() {
 
   return (
     <>
-      {/* <OrbitControls enabled={isDebugMode} /> */}
+      <OrbitControls enabled={isDebugMode} />
       {isDebugMode && <Perf position='bottom-right' matrixUpdate />}
       {isDebugMode && <axesHelper scale={[2, 2, 2]} />}
 
