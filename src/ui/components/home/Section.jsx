@@ -1,5 +1,5 @@
 export default function Section(props) {
   const { children, className } = props
 
-  return <section className={`h-screen w-screen max-w-screen-2xl mx-auto p-8 flex flex-col ${className || ''}`}>{children}</section>
+  return <section className={`flex justify-center items-center z-[1] ${className || ''}`}>{children}</section>
 }

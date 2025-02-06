@@ -31,7 +31,7 @@ const App = () => {
       <Leva hidden={!isDebugMode} />
 
       <Suspense fallback={<Loading />}>
-        <Canvas flat camera={cameraConfig}>
+        <Canvas flat camera={cameraConfig} id='main-canvas'>
           <color args={['#F5EFE6']} attach='background' />
 
           <ScrollControls pages={4} damping={0.1}>
@@ -40,7 +40,6 @@ const App = () => {
               <Experience />
             </Scroll>
 
-            {/* Interface */}
             <Scroll html>
               <Interface />
             </Scroll>
@@ -53,8 +52,4 @@ const App = () => {
   )
 }
 
-root.render(
-  <StrictMode>
-    <App />
-  </StrictMode>
-)
+root.render(<App />)

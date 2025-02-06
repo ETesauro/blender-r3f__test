@@ -12,6 +12,8 @@ import { useRoomAnimations } from '../../hooks'
 import { Books, Desk, Guitar, Lavagna, LeftMonitor, Quadro, RightMonitor, ShadowCatcher } from './components'
 
 import './materials'
+import { useMobile } from '../../../ui/hooks'
+import { useThree } from '@react-three/fiber'
 
 export function RoomV8(props) {
   // Room Nodes
@@ -32,14 +34,21 @@ export function RoomV8(props) {
   // Evita che l'oggetto venga ricreato ad ogni render
   const refs = useMemo(() => ({ desk, guitar, books, quadro, lavagna, shadowCatcher }), [])
 
+  const isMobile = useMobile()
+  const viewport = useThree((state) => state.viewport)
+
   // Controls
-  var { position, rotation } = useControls('Room V8', {
+  var { desktopPosition, mobilePosition, desktopRotation, mobileRotation, desktopScale, mobileScale } = useControls('Room V8', {
     desk: folder(
       {
-        position: { value: props.position || [0, 0, 0], max: 10, step: 0.01 },
-        rotation: { value: props.rotation || [0, 0, 0], max: 10, step: 0.01 }
+        desktopPosition: { value: [0.71, -1.17, 1.41], max: 10, step: 0.01 },
+        mobilePosition: { value: [-0.32, -viewport.height / 2 + 0.5, 0], max: 10, step: 0.01 },
+        desktopRotation: { value: [0, 5.45, 0], max: 10, step: 0.01 },
+        mobileRotation: { value: [0, -6.81, 0], max: 10, step: 0.01 },
+        desktopScale: { value: 0.7, max: 10, step: 0.01 },
+        mobileScale: { value: 0.55, max: 10, step: 0.01 }
       },
-      { collapsed: true }
+      { collapsed: false }
     )
   })
 
@@ -47,7 +56,13 @@ export function RoomV8(props) {
   useRoomAnimations(refs)
 
   return (
-    <group {...props} position={position} rotation={rotation} dispose={null}>
+    <group
+      {...props}
+      dispose={null}
+      position={isMobile ? mobilePosition : desktopPosition}
+      rotation={isMobile ? mobileRotation : desktopRotation}
+      scale={isMobile ? mobileScale : desktopScale}
+    >
       {/* Desk */}
       <group ref={desk}>
         <Desk geometry={nodes.desk.geometry} bakedTexture={bakedTexture} />

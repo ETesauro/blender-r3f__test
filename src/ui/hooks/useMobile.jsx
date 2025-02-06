@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useState } from 'react'
 
 function useMobile() {
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
+  const [isMobile, setIsMobile] = useState(window.innerWidth / window.innerHeight < 1.2)
 
   // Funzione per aggiornare lo stato
   const updateIsMobile = useCallback(() => {
-    setIsMobile(window.innerWidth < 768)
+    setIsMobile(window.innerWidth / window.innerHeight < 1.2)
   }, [])
 
   useEffect(() => {
