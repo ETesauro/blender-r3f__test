@@ -36,4 +36,4 @@ export const ShadowCatcher = forwardRef((props, ref) => {
 })
 
 useGLTF.preload('./models/room_v8/shadow/shadow_catcher.glb')
-useTexture.preload('./models/room_v8/shadow_catcher/shadow.jpg')
+useTexture.preload('./models/room_v8/shadow/shadow.jpg')
