@@ -1,9 +1,9 @@
-import { Suspense } from 'react'
+import { Suspense, useEffect } from 'react'
 
-import { Leva } from 'leva'
+import { Leva, useControls } from 'leva'
 
 import ReactDOM from 'react-dom/client'
-import { Canvas } from '@react-three/fiber'
+import { Canvas, useThree } from '@react-three/fiber'
 import { Preload, Scroll, ScrollControls } from '@react-three/drei'
 
 import Interface from './ui/Interface'
@@ -17,11 +17,11 @@ import './style.css'
 const root = ReactDOM.createRoot(document.querySelector('#root'))
 
 const cameraConfig = {
-  fov: 53,
+  fov: 50,
   near: 0.1,
   far: 50,
   // position: [5.5, 2, 7]
-  position: [0, 2, 7]
+  position: [0, 2.1, 7]
 }
 
 const App = () => {
@@ -58,3 +58,28 @@ const App = () => {
 }
 
 root.render(<App />)
+
+// Debug
+const CameraControls = () => {
+  const { camera } = useThree() // Ottieni la camera dalla scena
+  camera.position.set(0, 1.6, 7)
+  camera.near = 0.1
+  camera.far = 50.0
+
+  // Controllo del FOV con Leva
+  const { fov, position } = useControls('Camera', {
+    fov: { value: 50, min: 10, max: 100, step: 1 },
+    position: { value: [0, 1.6, 7], step: 0.1 }
+  })
+
+  // Aggiorna il FOV della camera quando cambia
+  useEffect(() => {
+    camera.fov = fov
+    camera.position.set(...position)
+    camera.updateProjectionMatrix() // Aggiorna la matrice di proiezione
+  }, [fov, position, focus, camera])
+
+  return null
+}
+
+export default CameraControls

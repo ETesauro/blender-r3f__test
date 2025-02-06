@@ -2,7 +2,7 @@ export default {
   durations: {
     room: {
       desk: 1,
-      chair: 1,
+      chair: 1, // OLD: non posso cancellare se no si scassano le versioni vecchie
       shadow: 1,
       wallStuff: {
         guitar: 0.8,
@@ -15,14 +15,14 @@ export default {
   delays: {
     room: {
       desk: 0.2,
-      chair: 0.9,
+      chair: 0.9, // OLD: non posso cancellare se no si scassano le versioni vecchie
       wallStuff: {
-        guitar: 0.3,
-        books: 0.45,
-        lavagna: 0.6,
-        quadro: 0.75
+        books: 0.3,
+        lavagna: 0.45,
+        quadro: 0.6,
+        guitar: 0.75
       },
-      shadow: 0.8
+      shadow: 1.0
     }
   },
   ease: {

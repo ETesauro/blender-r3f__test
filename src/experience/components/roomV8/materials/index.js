@@ -1,0 +1,1 @@
+export { ShadowCatcherMaterial } from './ShadowCatcherMaterial'
