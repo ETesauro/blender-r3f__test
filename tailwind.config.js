@@ -3,6 +3,9 @@ export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      screens: {
+        'max-ar-12-10': { raw: '(max-aspect-ratio: 12/10)' }
+      },
       fontFamily: {
         poppins: ['Poppins', 'sans-serif']
       },

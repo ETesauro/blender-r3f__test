@@ -1,9 +1,9 @@
-import Section from './Section'
+export default function Contact(props) {
+  const { className } = props
 
-export default function Contact() {
   return (
-    <Section className='items-start justify-center'>
+    <div className={`${className || ''}`}>
       <h1>Contact</h1>
-    </Section>
+    </div>
   )
 }

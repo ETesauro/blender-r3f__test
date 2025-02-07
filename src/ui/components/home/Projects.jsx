@@ -1,9 +1,9 @@
-import Section from './Section'
+export default function Projects(props) {
+  const { className } = props
 
-export default function Projects() {
   return (
-    <Section className='items-start justify-center'>
+    <div className={`${className || ''}`}>
       <h1>Projects</h1>
-    </Section>
+    </div>
   )
 }

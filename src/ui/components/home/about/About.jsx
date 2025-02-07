@@ -1,8 +1,11 @@
 import './style.css'
 
-export default function About() {
+export default function About(props) {
+  const { className } = props
+
   return (
-    <div id='landing-page' className='content-container landing-slow-transition'>
+    <div id='landing-page' className={`${className || ''}`}>
+      {/* <div className={`${className || ''} absolute top-0 h-screen w-screen max-ar-12-10:items-start max-ar-12-10:pt-[45px]  `}> */}
       <section id='landing-page-section' className='content-width slide-out-left-transition'>
         <svg
           id='landing-content-svg'
@@ -27,18 +30,6 @@ export default function About() {
           </foreignObject>
         </svg>
       </section>
-
-      {/* <h1 className='text-center md:text-start md:text-6xl text-3xl font-semibold'>
-        <span className='block'>Hi!</span>
-        <span className='block'>My name is</span>
-        <span className='block text-5xl md:text-6xl'>Emmanuel.</span>
-      </h1>
-
-      <p className='text-lg text-[#7c8594] mt-1'>I love creating beautiful user experiences.</p>
-
-      <Magnetic>
-        <button className='bg-primary text-white py-3 px-8 rounded-full font-semibold text-md mt-16'>Contact me</button>
-      </Magnetic> */}
     </div>
   )
 }
